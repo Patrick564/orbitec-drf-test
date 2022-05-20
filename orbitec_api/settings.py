@@ -119,7 +119,13 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
+
+
+# Rest Framework
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': '%d-%m-%Y %H:%M:%S',
+}
 
 
 # Static files (CSS, JavaScript, Images)
