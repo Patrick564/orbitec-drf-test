@@ -31,8 +31,14 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # Rest Framework
     'rest_framework',
+    'rest_framework.authtoken',
+
+    # Local apps
     'vehicles',
+
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,6 +131,9 @@ USE_TZ = False
 # Rest Framework
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%d-%m-%Y %H:%M:%S',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 }
 
 
