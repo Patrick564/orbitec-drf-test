@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=orbitec_api
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+  web:
+    build: .
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/orbitec_api
+    ports:
+      - "8000:8000"
+    environment:
+      - NAME_DB=orbitec_api
+      - USER_DB=postgres
+      - PASSWORD_DB=12345
+      - HOST_DB=db
+      - PORT_DB=5432
+    depends_on:
+      - db
